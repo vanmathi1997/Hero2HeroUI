@@ -16,17 +16,18 @@ jobs:
     name: Build and Deploy Job
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'  # Make sure this matches your package.json requirement
+          node-version: '20.19.0'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Angular CLI
+      - name: Install Angular CLI globally
         run: npm install -g @angular/cli
 
       - name: Build Angular App
@@ -38,8 +39,8 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_MUD_068E5B000 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"                  # Your source folder
-          output_location: "dist/Hero2Hero"  # Your Angular build output folder
+          app_location: "/"
+          output_location: "dist/Hero2Hero"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
