@@ -13,24 +13,21 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Deploy Angular App
     permissions:
       id-token: write
       contents: read
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: true
-          lfs: false
 
-      - name: Clean Git Config
+      - name: Clean Git Config (optional fix)
         run: |
           git config --global --unset-all http.https://github.com/.extraheader || true
 
-      - name: Set up Node.js
+      - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # Use latest stable version supported by Angular 20
+          node-version: '22'
 
       - name: Install Dependencies
         run: npm ci
@@ -38,11 +35,11 @@ jobs:
       - name: Build Angular App
         run: npm run build
 
-      - name: Deploy to Azure Static Web Apps
+      - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_BAY_00D896E00 }}
           action: "upload"
-          app_location: "/" # Adjust if needed
-          output_location: "dist/Hero2Hero" # Match the actual Angular build output folder
-          skip_app_build: true  
+          app_location: "/"                          # Where your package.json is
+          output_location: "dist/Hero2Hero"          # Must match angular.json outputPath
+          skip_app_build: true                       # 🔥 disables Oryx completely
