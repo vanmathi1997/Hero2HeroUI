@@ -1,0 +1,41 @@
+<div class="admin-console">
+  <div class="panel">
+    <h2>Category / Tag Management</h2>
+    <ul>
+      <li *ngFor="let category of categories">
+        <input [(ngModel)]="category.name" placeholder="Category Name" />
+        <button (click)="editCategory(category)">✎</button>
+      </li>
+    </ul>
+    <button (click)="addCategory()">Add Category</button>
+  </div>
+
+  <div class="panel">
+    <h2>Badge Creator</h2>
+    <ul>
+      <li *ngFor="let badge of badges">
+        <input [(ngModel)]="badge.name" placeholder="Badge Name" />
+        <button (click)="editBadge(badge)">✎</button>
+      </li>
+    </ul>
+    <button (click)="addBadge()">Add Badge</button>
+  </div>
+
+  <div class="panel">
+    <h2>User Analytics</h2>
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Answers</th>
+        <th>Solutions</th>
+        <th>Upvotes</th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.answers }}</td>
+        <td>{{ user.solutions }}</td>
+        <td>{{ user.upvotes }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

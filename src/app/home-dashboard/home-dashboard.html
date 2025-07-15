@@ -1,0 +1,57 @@
+<div class="dashboard">
+  <section class="trending">
+    <h3>Trending Questions / Recent Posts</h3>
+    <input type="text" placeholder="Search for questions or topics" />
+    <button>Quick Ask</button>
+    <ul>
+      <li *ngFor="let question of trendingQuestions">{{ question }}</li>
+    </ul>
+  </section>
+
+  <section class="thread-preview">
+    <h3>Question Thread</h3>
+    <div class="question-card">
+      <h4><strong>How to integrate UPS API with internal tool?</strong></h4>
+      <div class="tags">
+        <span *ngFor="let tag of tags">{{ tag }}</span>
+      </div>
+      <p><em>A sample answer preview goes here. Answer summary and outcome info.</em></p>
+      <div class="card-footer">
+        <span>📊 41</span>
+        <span>💬 Comment</span>
+        <button>Mark as Solution</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="badges">
+    <h3>Badges & Announcements</h3>
+    <div class="badge-list">
+      <div *ngFor="let badge of badges" class="badge">{{ badge.icon }} {{ badge.title }}</div>
+    </div>
+    <div class="metrics">
+      <p>Answers provided</p>
+      <p>Solutions marked</p>
+      <p>Upvotes received</p>
+    </div>
+  </section>
+
+  <section class="admin-panel">
+    <h3>Badge Creator</h3>
+    <div class="metrics">
+      <p>Contribution Metrics</p>
+      <p>{{ metrics.answers }} Answers</p>
+      <p>{{ metrics.solutions }} Solutions</p>
+      <p>{{ metrics.upvotes }} Upvotes</p>
+    </div>
+    <h4>Activity Timeline</h4>
+    <div class="tag-manager">
+      <p>Category / Tag Management</p>
+      <ul>
+        <li>API <button>Edit</button></li>
+        <li>HR <button>Edit</button></li>
+        <li>BASE <button>Edit</button></li>
+      </ul>
+    </div>
+  </section>
+</div>

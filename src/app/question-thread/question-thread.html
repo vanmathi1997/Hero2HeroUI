@@ -1,0 +1,24 @@
+<div class="thread-container">
+  <h2>{{ question }}</h2>
+
+  <div class="tags">
+    <span class="tag" *ngFor="let tag of tags">{{ tag }}</span>
+  </div>
+
+  <p class="answer">{{ answer }}</p>
+
+  <div class="thread-actions">
+    <span class="upvotes">👍 41</span>
+    <span class="comments">💬 Comment</span>
+    <button class="solution-button">Mark as Solution</button>
+  </div>
+
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <ul>
+      <li *ngFor="let comment of comments">
+        <strong>{{ comment.user }}</strong>: {{ comment.text }}
+      </li>
+    </ul>
+  </div>
+</div>

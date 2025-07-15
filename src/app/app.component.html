@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <ul>
+    <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/question" routerLinkActive="active-link">Questions</a></li>
+    <li><a routerLink="/profile" routerLinkActive="active-link">Profile</a></li>
+    <li><a routerLink="/admin" routerLinkActive="active-link">Admin</a></li>
+  </ul>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet> <!-- This renders the routed components -->
+</main>

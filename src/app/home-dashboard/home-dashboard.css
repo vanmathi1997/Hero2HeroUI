@@ -1,0 +1,98 @@
+.top-nav {
+  display: flex;
+  gap: 2rem;
+  background: #eee;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.top-nav a.active {
+  color: rebeccapurple;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "trending thread"
+    "badges admin";
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.trending {
+  grid-area: trending;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.trending input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.trending button {
+  margin-bottom: 1rem;
+}
+
+.thread-preview {
+  grid-area: thread;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.question-card {
+  border: 1px solid #aaa;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.tags span {
+  background: #ded4f7;
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.badges {
+  grid-area: badges;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.badge-list {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  background: #e6d8ff;
+  border-radius: 5px;
+}
+
+.admin-panel {
+  grid-area: admin;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.tag-manager ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tag-manager li {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.3rem 0;
+}
