@@ -13,26 +13,21 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Angular App
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    name: Build and Deploy Job
 
-      - name: Use Node.js 20.19.0
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: '20.19.0'  # Make sure this matches your package.json requirement
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
       - name: Build Angular App
         run: npm run build -- --configuration production
@@ -43,8 +38,8 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_MUD_068E5B000 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/" # Your app source root
-          output_location: "dist/Hero2Hero" # Path to built output
+          app_location: "/"                  # Your source folder
+          output_location: "dist/Hero2Hero"  # Your Angular build output folder
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
