@@ -30,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '19' # Use latest stable version supported by Angular 20
+          node-version: '22' # Use latest stable version supported by Angular 20
 
       - name: Install Dependencies
         run: npm ci
