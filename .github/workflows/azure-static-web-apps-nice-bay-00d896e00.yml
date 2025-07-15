@@ -45,3 +45,4 @@ jobs:
           action: "upload"
           app_location: "/" # Adjust if needed
           output_location: "dist/Hero2Hero" # Match the actual Angular build output folder
+          skip_app_build: true  
