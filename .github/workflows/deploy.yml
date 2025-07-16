@@ -11,6 +11,8 @@ on:
 
 jobs:
   build_and_deploy_job:
+    runs-on: ubuntu-latest  # ✅ Required property added here
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -32,7 +34,7 @@ jobs:
           npm -v
 
       - name: Install dependencies
-        run: npm install  # or npm ci if you want strict reproducibility
+        run: npm install
 
       - name: Build Angular App
         run: npm run build -- --configuration production
@@ -45,6 +47,7 @@ jobs:
           action: "upload"
           app_location: "/"                
           output_location: "dist/Hero2Hero"
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
