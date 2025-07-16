@@ -11,18 +11,16 @@ on:
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
-    runs-on: ubuntu-latest
-    name: Build and Deploy Angular App to Azure
-
+    ...
     steps:
-      - name: Clean up node_modules and lock file
-        run: rm -rf node_modules package-lock.json
-        
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Clean up node_modules and lock file
+        run: rm -rf node_modules package-lock.json
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
       - name: Setup Node.js 20.19.0
         uses: actions/setup-node@v4
@@ -34,9 +32,8 @@ jobs:
           node -v
           npm -v
 
-
       - name: Install dependencies
-        run: npm ci
+        run: npm install  # or npm ci if you want strict reproducibility
 
       - name: Build Angular App
         run: npm run build -- --configuration production
@@ -48,8 +45,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"                
-          output_location: "dist/Hero2Hero"  # ✅ Replace with your actual build output folder name if different
-
+          output_location: "dist/Hero2Hero"
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
