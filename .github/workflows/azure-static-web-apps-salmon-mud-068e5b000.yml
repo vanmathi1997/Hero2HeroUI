@@ -19,19 +19,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js 22.5.1
+      - name: Setup Node.js 20.19.0
         uses: actions/setup-node@v4
         with:
-          node-version: '22.5.1'
+          node-version: '20.19.0'
 
-      - name: Print Node version
-        run: node -v
+      - name: Print Node and NPM version
+        run: |
+          node -v
+          npm -v
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Ensure build dependency is installed
-        run: npm install --save-dev @angular-devkit/build-angular
 
       - name: Build Angular App
         run: npm run build -- --configuration production
@@ -43,7 +45,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"                
-          output_location: "dist/Hero2Hero"  # Make sure this matches your project name in angular.json
+          output_location: "dist/Hero2Hero"  # ✅ Replace with your actual build output folder name if different
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
