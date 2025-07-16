@@ -2,7 +2,7 @@
   "name": "hero2-hero",
   "version": "0.0.0",
   "engines": {
-    "node": ">=20.19.0"
+    "node": "24.3.0"
   },
   "scripts": {
     "ng": "ng",
