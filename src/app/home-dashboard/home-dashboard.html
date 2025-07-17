@@ -1,12 +1,13 @@
 <div class="dashboard">
-  <section class="trending">
-    <h3>Trending Questions / Recent Posts</h3>
-    <input type="text" placeholder="Search for questions or topics" />
-    <button>Quick Ask</button>
-    <ul>
-      <li *ngFor="let question of trendingQuestions">{{ question }}</li>
-    </ul>
-  </section>
+ <section class="trending">
+  <h3>Trending Questions / Recent Posts</h3>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search for questions or topics" />
+  <button (click)="quickAsk()">Quick Ask</button>
+  <ul>
+    <li *ngFor="let question of trendingQuestions">{{ question.title }}: {{ question.description }}</li>
+    <!-- <li *ngFor="let question of trendingQuestions">{{ question.description }}</li> -->
+  </ul>
+</section>
 
   <section class="thread-preview">
     <h3>Question Thread</h3>
